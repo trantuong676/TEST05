@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<BAITHI>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("BAITHI") ?? throw new InvalidOperationException("Connection string 'BAITHI' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
